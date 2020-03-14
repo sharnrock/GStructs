@@ -2,6 +2,7 @@
 #include "GList.h"
 
 
+
 namespace Helper
 {
     int getConstInt(const G::List<int>& testee, int ndx)
