@@ -23,3 +23,13 @@ TEST(GString, SquareBracketOperator_ReturnsChar_When_NdxGiven)
 	G::String str("Hello");
 	ASSERT_EQ(expected, str[1]);
 }
+
+TEST(GString, AssignmentOperator_)
+{
+	ASSERT_TRUE(false);
+}
+
+TEST(GString, MoveOperator_)
+{
+	ASSERT_TRUE(false);
+}

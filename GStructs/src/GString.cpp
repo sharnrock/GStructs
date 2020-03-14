@@ -13,9 +13,29 @@ String::String(const char* s)
 	copyCStrings(s, data);
 }
 
+String::String(const String& other)
+{
+	*this = other;
+}
+
+String::String(String&& other)
+{
+	*this = other;
+}
+
 String::~String()
 {
 	delete[] data;
+}
+
+String& String::operator=(const String& other)
+{
+	return *this;
+}
+
+String& String::operator=(String&& other) noexcept
+{
+	return *this;
 }
 
 const char& String::operator[](int ndx)
