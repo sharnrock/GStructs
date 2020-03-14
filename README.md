@@ -1,6 +1,6 @@
 # GStructs
-Common data structures
-
 G for Good... enough?
 
-Created so I could have data structs similar to Qt without actually needing the entire framework
+Common data structures
+
+Created so I could have simple data structs similar to Qt without actually needing the entire framework
