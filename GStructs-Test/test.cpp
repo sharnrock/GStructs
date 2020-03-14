@@ -33,7 +33,7 @@ namespace G
 
         const T& operator[](int ndx) const
         {
-            return (*this)[ndx];
+            return data[ndx];
         }
 
         int getCapacity() { return capacity;  }
@@ -49,21 +49,21 @@ namespace G
         void fixCapacity()
         {
             if (isStartingCapacity())
-            {
                 initializeArray();
-            }
             else
-            {
-                capacity <<= 1; // double value
-                T* newone = new T[capacity];
-                assert(capacity > next_insert);
+                doubleCapacityAndCopyDataToNewArray();
+        }
 
-                for (int i = 0; i < next_insert; i++)
-                    newone[i] = data[i];
+        void doubleCapacityAndCopyDataToNewArray()
+        {
+            capacity <<= 1; // double value /w shift
+            T* newone = new T[capacity];
+            assert(capacity > next_insert);
+            for (int i = 0; i < next_insert; i++)
+                newone[i] = data[i];
 
-                delete[] data;
-                data = newone;
-            }
+            delete[] data;
+            data = newone;
         }
 
         void initializeArray()
@@ -87,6 +87,14 @@ namespace G
         int capacity;
         int next_insert;
     };
+}
+
+namespace Helper
+{
+    int getConstInt(const G::List<int>& testee, int ndx)
+    {
+        return testee[ndx];
+    }
 }
 
 TEST(GList, Construct_CapacityIsEqual_After_Construct) 
@@ -114,13 +122,9 @@ TEST(GList, Append_CapacityDoubles_After_Append)
 TEST(GList, Append_CountIncreases_After_Append)
 {
     G::List<int> l;
-    ASSERT_EQ(0, l.getCount());
     l.append(1);
-    ASSERT_EQ(1, l.getCount());
     l.append(1);
-    ASSERT_EQ(2, l.getCount());
     l.append(1);
-    ASSERT_EQ(3, l.getCount());
     l.append(1);
     ASSERT_EQ(4, l.getCount());
 }
@@ -132,5 +136,23 @@ TEST(GList, SquareBracketOperator_ReturnsValue_After_Append)
     l.append(12);
     l.append(expected);
     int actual = l[1];
+    ASSERT_EQ(expected, actual);
+}
+
+TEST(GList, SquareBracketOperator_UpdateValue_After_Append)
+{
+    int expected = 42;
+    G::List<int> l;
+    l.append(0);
+    l[0] = expected;
+    ASSERT_EQ(expected, l[0]);
+}
+
+TEST(GList, SquareBracketConstOperator_ReturnsValue_After_Append)
+{
+    int expected = 42;
+    G::List<int> l;
+    l.append(expected);
+    int actual = Helper::getConstInt(l, 0);
     ASSERT_EQ(expected, actual);
 }
