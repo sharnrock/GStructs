@@ -11,17 +11,26 @@ namespace G
 		int getMaximumAllowableSize();
 
 		String(const char*);
+		String();
 		String(const String& other);
-		String(String&& other);
+		String(String&& other)  noexcept;
 		~String();
 
+		String& operator=(const char*);
 		String& operator=(const String&);
 		String& operator=(String&&) noexcept;
-		const char& operator[](int ndx);
-		const char* toConstChar() { return data; }
-		int getCount() { return size_w_null; }
+		const char& operator[](int ndx) const;
+
+		bool operator==(const String& rvalue);
+		bool operator!=(const String& rvalue);
+
+		bool isNull() const;
+		const char* toConstChar() const { return data; }
+		int getCount() const { return size_w_null; }
 
 	private:
+		void removePreviousString();
+		void initializeDataFromCString(const char* s);
 		int getCStringSize(const char* source);
 		void copyCStrings(const char* source, char* destination);
 
