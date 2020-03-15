@@ -39,6 +39,7 @@ namespace G
 
         int getCapacity() { return capacity; }
         int getCount() { return next_insert; }
+        const T* getData() const { return data; }
 
         void append(const T& t)
         {
