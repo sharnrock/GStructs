@@ -34,6 +34,7 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClCompile Include="GList-Test.cpp" />
+    <ClCompile Include="GMap-Test.cpp" />
     <ClCompile Include="GString-Test.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -70,3 +70,15 @@ TEST(GList, SquareBracketConstOperator_ReturnsValue_After_Append)
     int actual = Helper::getConstInt(l, 0);
     ASSERT_EQ(expected, actual);
 }
+
+TEST(GList, GetIndexOfElement_ReturnsIndex_When_Exists)
+{
+    int expected = 2;
+    G::List<int> l;
+    l.append(1);
+    l.append(3);
+    l.append(42);
+    l.append(5);
+    int actual = l.getIndexOfElement(42);
+    ASSERT_EQ(expected, actual);
+}

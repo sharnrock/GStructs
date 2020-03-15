@@ -47,6 +47,18 @@ namespace G
             data[next_insert++] = t;
         }
 
+        /// Returns index or -1 if it doesn't exist
+        int getIndexOfElement(const T& element)
+        {
+            for (int i = 0; i < getCount(); i++)
+            {
+                if (data[i] == element)
+                    return i;
+            }
+            return -1;
+        }
+
+    private:
         void fixCapacity()
         {
             if (isStartingCapacity())
@@ -83,7 +95,7 @@ namespace G
             return next_insert < capacity;
         }
 
-    private:
+    
         T* data;
         int capacity;
         int next_insert;
