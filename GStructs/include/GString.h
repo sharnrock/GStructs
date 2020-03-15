@@ -3,15 +3,15 @@
 
 namespace G
 {
-	// Ascii or Latin1 manipulation.  Don't use for UTF-x
+	// Ascii or Latin1 manipulation (i.e Single Byte).  Don't use for UTF-x or multibyte encodings
 	class String
 	{
 	public:
 		/// The largest amount of chars this string can hold
 		int getMaximumAllowableSize();
 
-		String(const char*);
 		String();
+		String(const char*);
 		String(const String& other);
 		String(String&& other)  noexcept;
 		~String();
