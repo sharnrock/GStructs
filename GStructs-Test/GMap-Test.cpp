@@ -7,6 +7,13 @@ namespace G
 	class Map
 	{
 	public:
+		Map(int initial_capacity)
+			: values(initial_capacity)
+			, keys(initial_capacity)
+			, count(0)
+		{
+		}
+
 		Map()
 			: count(0)
 		{
@@ -30,6 +37,10 @@ namespace G
 			++count;
 		}
 
+		const G::List<Value>& getValues() { return values; }
+		const G::List<Key>& getKeys() { return keys; }
+		int getCount() { return count; }
+
 	private:
 		G::List<Value> values;
 		G::List<Key> keys;
@@ -37,7 +48,7 @@ namespace G
 	};
 }
 
-TEST(GMap, test1)
+TEST(GMap, SquareBracketOperator_StoreAndRetrieve_When_NewElement)
 {
 	int expected = 42;
 	G::Map<int, int> map;
